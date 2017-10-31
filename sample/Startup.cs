@@ -24,11 +24,7 @@ namespace Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddServiceWorker(new WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerOptions
-            {
-                Version = "v3",
-                RoutesToPreCache = "ost.js, foo.js"
-            });
+            services.AddServiceWorker();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
