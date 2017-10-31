@@ -3,7 +3,7 @@
 
     // Update 'version' if you need to refresh the cache
     var version = '{version}';
-    var offlineUrl = "/offline.html";
+    var offlineUrl = "{offlineRoute}";
 
     // Store core files in a cache (including a page to display when offline)
     function updateStaticCache() {

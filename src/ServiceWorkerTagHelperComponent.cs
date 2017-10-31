@@ -11,11 +11,13 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
         private IHostingEnvironment _env;
         private IHttpContextAccessor _accessor;
+        private ServiceWorkerOptions _options;
 
-        public ServiceWorkerTagHelperComponent(IHostingEnvironment env, IHttpContextAccessor accessor)
+        public ServiceWorkerTagHelperComponent(IHostingEnvironment env, IHttpContextAccessor accessor, ServiceWorkerOptions options)
         {
             _env = env;
             _accessor = accessor;
+            _options = options;
         }
 
         /// <inheritdoc />
@@ -24,6 +26,11 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// <inheritdoc />
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
+            if (!_options.RegisterServiceWorker)
+            {
+                return;
+            }
+
             if (string.Equals(context.TagName, "body", StringComparison.OrdinalIgnoreCase))
             {
                 if (_accessor.HttpContext.Request.IsHttps || _env.IsDevelopment())

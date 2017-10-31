@@ -16,6 +16,8 @@ namespace WebEssentials.AspNetCore.ServiceWorker
             Version = "v1.0";
             Mode = ServiceWorkerMode.Safe;
             RoutesToPreCache = string.Empty;
+            OfflineRoute = "/offline.html";
+            RegisterServiceWorker = true;
         }
 
         internal ServiceWorkerOptions(IConfiguration config)
@@ -23,6 +25,12 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         {
             Version = config["serviceworker:version"] ?? Version;
             RoutesToPreCache = config["serviceworker:routesToPreCache"] ?? RoutesToPreCache;
+            OfflineRoute= config["serviceworker:offlineRoute"] ?? OfflineRoute;
+
+            if (bool.TryParse(config["serviceworker:registerServiceWorker"] ?? "true", out bool register))
+            {
+                RegisterServiceWorker = register;
+            }
 
             if (Enum.TryParse(config["serviceworker:mode"] ?? "safe", true, out ServiceWorkerMode mode))
             {
@@ -45,5 +53,16 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// A comma separated list of routes to pre-cache when service worker installs in the browser.
         /// </summary>
         public string RoutesToPreCache { get; set; }
+
+        /// <summary>
+        /// The route to the page to show when offline
+        /// </summary>
+        public string OfflineRoute { get; set; }
+
+        /// <summary>
+        /// Determines if a script that registers the service worker should be injected
+        /// into the bottom of the HTML page.
+        /// </summary>
+        public bool RegisterServiceWorker { get; set; }
     }
 }

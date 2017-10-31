@@ -39,7 +39,8 @@ namespace WebEssentials.AspNetCore.ServiceWorker
                 string js = await reader.ReadToEndAsync();
                 string modified = js
                     .Replace("{version}", _options.Version)
-                    .Replace("{routes}", string.Join(",", _options.RoutesToPreCache.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'" )));
+                    .Replace("{routes}", string.Join(",", _options.RoutesToPreCache.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'" )))
+                    .Replace("{offlineRoute}", _options.OfflineRoute);
 
                 return Content(modified);
             }
