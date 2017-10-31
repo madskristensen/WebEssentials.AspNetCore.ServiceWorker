@@ -16,3 +16,29 @@ public void ConfigureServices(IServiceCollection services)
     services.AddServiceWorker();
 }
 ```
+
+## Configure
+The options can be configured either in `Startup.cs`:
+
+```c#
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddServiceWorker(new ServiceWorkerOptions
+    {
+        Version = "v3",
+        RoutesToPreCache = "foo.css, bar.js"
+    });
+}
+```
+
+...or in `appsettings.json`:
+
+```json
+{
+  "serviceworker": {
+    "version": "v1.0",
+    "routesToPreCache": "foo.css, bar.js"
+  }
+}
+```
