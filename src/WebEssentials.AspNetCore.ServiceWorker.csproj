@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebEssentials.AspNetCore.ServiceWorker.xml</DocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTags>asp.net, performance, speed, cache, caching</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Mads Kristensen</Authors>
+    <Description>Service worker support for ASP.NET Core projects that provides offline support as well as client-side caching.</Description>
+    <Copyright>Copyright © Mads Kristensen</Copyright>
+    <PackageId>WebEssentials.AspNetCore.ServiceWorker</PackageId>
+    <Product>WebEssentials.AspNetCore.ServiceWorker</Product>
+    <PackageIconUrl>https://raw.githubusercontent.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker/master/art/logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\WebEssentials.AspNetCore.ServiceWorker.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ServiceWorkers\offline.html" />
+    <None Remove="ServiceWorkers\safe.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ServiceWorkers\offline.html" />
+    <EmbeddedResource Include="ServiceWorkers\safe.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
