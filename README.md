@@ -1,4 +1,4 @@
-# ASP.NET Core output caching middleware
+# ASP.NET Core Service Worker integration
 
 [![Build status](https://ci.appveyor.com/api/projects/status/033jspebqrwao5o4?svg=true)](https://ci.appveyor.com/project/madskristensen/webessentials-aspnetcore-serviceworker)
 [![NuGet](https://img.shields.io/nuget/v/WebEssentials.AspNetCore.ServiceWorker.svg)](https://nuget.org/packages/WebEssentials.AspNetCore.ServiceWorker/)
