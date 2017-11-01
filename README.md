@@ -52,3 +52,44 @@ public void ConfigureServices(IServiceCollection services)
   }
 }
 ```
+
+## Caching strategies
+Specify which caching strategy you want like this:
+
+```c#
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddServiceWorker(new ServiceWorkerOptions
+    {
+        Strategy = ServiceWorkerStrategy.CacheFirst
+    });
+}
+```
+
+...or in `appsettings.json`:
+
+```json
+{
+  "serviceworker": {
+    "strategy": "cacheFirst"
+  }
+}
+```
+
+The options are:
+
+### CacheFirst
+This strategy will add all requested resources to the service worker cache and serve it from the cache every time. If the cache doesn't have the requested resource it will fall back to the network and if that succeeds it will put the response in the cache.
+
+### CacheFirstSafe (default)
+This strategy adds only HTML files as well as resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds` to the cache.
+
+It will always attempt the network for HTML files and fall back to the cache when the user is offline. That way the user always gets the latest from the live Internet when online.
+
+For the resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
+
+### NetworkFirst
+This strategy will always try the network first for all resources and then fall back to the cache when offline. When the network call succeeds, it will put the response in the cache.
+
+This strategy is completely safe to use and is primarily useful for offline-only scenarios since it isn't giving any performance benefits.

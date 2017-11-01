@@ -6,8 +6,18 @@
     public enum ServiceWorkerStrategy
     {
         /// <summary>
-        /// Provides offline support, caches static resources with ?v=... querystring only, goes to network first for HTML
+        /// Serves all resources from cache and falls back to network.
         /// </summary>
-        NetworkFirstFallbackCacheSafe
+        CacheFirst,
+
+        /// <summary>
+        /// Caches static resources with ?v=... querystring only. Checks network first for HTML.
+        /// </summary>
+        CacheFirstSafe,
+
+        /// <summary>
+        /// Always tries the network first and falls back to cache when offline.
+        /// </summary>
+        NetworkFirst
     }
 }

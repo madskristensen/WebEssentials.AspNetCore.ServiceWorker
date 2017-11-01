@@ -24,7 +24,10 @@ namespace Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddServiceWorker();
+            services.AddServiceWorker(new WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerOptions
+            {
+                Strategy = WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerStrategy.CacheFirst
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +39,7 @@ namespace Sample
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
