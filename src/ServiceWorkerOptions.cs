@@ -13,8 +13,8 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// </summary>
         public ServiceWorkerOptions()
         {
-            Version = "v1.0";
-            Mode = ServiceWorkerMode.Safe;
+            CacheId = "v1.0";
+            Strategy = ServiceWorkerStrategy.NetworkFirstFallbackCacheSafe;
             RoutesToPreCache = string.Empty;
             OfflineRoute = "/offline.html";
             RegisterServiceWorker = true;
@@ -23,7 +23,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         internal ServiceWorkerOptions(IConfiguration config)
             : this()
         {
-            Version = config["serviceworker:version"] ?? Version;
+            CacheId = config["serviceworker:version"] ?? CacheId;
             RoutesToPreCache = config["serviceworker:routesToPreCache"] ?? RoutesToPreCache;
             OfflineRoute= config["serviceworker:offlineRoute"] ?? OfflineRoute;
 
@@ -32,22 +32,22 @@ namespace WebEssentials.AspNetCore.ServiceWorker
                 RegisterServiceWorker = register;
             }
 
-            if (Enum.TryParse(config["serviceworker:mode"] ?? "safe", true, out ServiceWorkerMode mode))
+            if (Enum.TryParse(config["serviceworker:mode"] ?? "safe", true, out ServiceWorkerStrategy mode))
             {
-                Mode = mode;
+                Strategy = mode;
             }
         }
 
         /// <summary>
-        /// The version of the service worker as well as the name of the cache.
+        /// The cache identifier of the service worker (can be any string).
         /// Change this property to force the service worker to reload in browsers.
         /// </summary>
-        public string Version { get; set; }
+        public string CacheId { get; set; }
 
         /// <summary>
         /// Selects one of the predefined service worker types.
         /// </summary>
-        public ServiceWorkerMode Mode { get; set; }
+        public ServiceWorkerStrategy Strategy { get; set; }
 
         /// <summary>
         /// A comma separated list of routes to pre-cache when service worker installs in the browser.

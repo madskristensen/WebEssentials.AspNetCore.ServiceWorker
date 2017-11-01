@@ -22,13 +22,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ServiceWorkers\NetworkFirstFallbackCacheSafe.js" />
     <None Remove="ServiceWorkers\offline.html" />
-    <None Remove="ServiceWorkers\safe.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ServiceWorkers\offline.html" />
-    <EmbeddedResource Include="ServiceWorkers\safe.js" />
+    <EmbeddedResource Include="ServiceWorkers\NetworkFirstFallbackCacheSafe.js" />
   </ItemGroup>
 
   <ItemGroup>

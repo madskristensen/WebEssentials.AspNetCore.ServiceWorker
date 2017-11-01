@@ -30,7 +30,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         {
             Response.ContentType = "application/javascript";
 
-            string fileName = _options.Mode.ToString().ToLowerInvariant() + ".js";
+            string fileName = _options.Strategy + ".js";
             Assembly assembly = typeof(ServiceWorkerController).Assembly;
             Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.ServiceWorker.ServiceWorkers.{fileName}");
 
@@ -38,7 +38,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
             {
                 string js = await reader.ReadToEndAsync();
                 string modified = js
-                    .Replace("{version}", _options.Version)
+                    .Replace("{version}", _options.CacheId)
                     .Replace("{routes}", string.Join(",", _options.RoutesToPreCache.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'" )))
                     .Replace("{offlineRoute}", _options.OfflineRoute);
 
