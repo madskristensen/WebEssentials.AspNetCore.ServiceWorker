@@ -54,7 +54,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 ## Caching strategies
-Specify which caching strategy you want like this:
+Specify which caching strategy you want to use if you want a different one than the default (CacheFirstSafe):
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -85,7 +85,7 @@ This strategy will add all requested resources to the service worker cache and s
 ### CacheFirstSafe (default)
 This strategy adds only HTML files as well as resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds` to the cache.
 
-It will always attempt the network for HTML files and fall back to the cache when the user is offline. That way the user always gets the latest from the live Internet when online.
+It will always attempt the network for HTML files (content type `text/html`) and fall back to the cache when the user is offline. That way the user always gets the latest from the live Internet when online.
 
 For the resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
 
