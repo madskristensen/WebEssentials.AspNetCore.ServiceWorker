@@ -13,10 +13,10 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// </summary>
         public ServiceWorkerOptions()
         {
-            CacheId = "v1.0";
+            CacheId = Constants.DefaultCacheId;
             Strategy = ServiceWorkerStrategy.CacheFirstSafe;
             RoutesToPreCache = string.Empty;
-            OfflineRoute = "/offline.html";
+            OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
         }
 

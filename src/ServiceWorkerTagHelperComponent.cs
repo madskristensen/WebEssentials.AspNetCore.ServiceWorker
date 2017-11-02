@@ -7,7 +7,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 {
     internal class ServiceWorkerTagHelperComponent : TagHelperComponent
     {
-        private const string _script = "\r\n\t<script>'serviceWorker'in navigator&&navigator.serviceWorker.register('/serviceworker.js')</script>";
+        private const string _script = "\r\n\t<script>'serviceWorker'in navigator&&navigator.serviceWorker.register('" + Constants.ServiceworkerRoute + "')</script>";
 
         private IHostingEnvironment _env;
         private IHttpContextAccessor _accessor;

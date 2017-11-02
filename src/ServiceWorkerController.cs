@@ -25,7 +25,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// <summary>
         /// Serves a service worker based on the provided settings.
         /// </summary>
-        [Route("/serviceworker.js")]
+        [Route(Constants.ServiceworkerRoute)]
         public async Task<IActionResult> ServiceWorkerAsync()
         {
             Response.ContentType = "application/javascript; charset=utf-8";
@@ -49,7 +49,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// <summary>
         /// Serves the offline.html file
         /// </summary>
-        [Route("/offline.html")]
+        [Route(Constants.Offlineroute)]
         public async Task<IActionResult> OfflineAsync()
         {
             Response.ContentType = "text/html";
