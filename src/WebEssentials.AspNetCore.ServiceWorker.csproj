@@ -24,12 +24,14 @@
   <ItemGroup>
     <None Remove="ServiceWorkers\CacheFirst.js" />
     <None Remove="ServiceWorkers\CacheFirstSafe.js" />
+    <None Remove="ServiceWorkers\Minimal.js" />
     <None Remove="ServiceWorkers\NetworkFirst.js" />
     <None Remove="ServiceWorkers\offline.html" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ServiceWorkers\CacheFirst.js" />
+    <EmbeddedResource Include="ServiceWorkers\Minimal.js" />
     <EmbeddedResource Include="ServiceWorkers\NetworkFirst.js" />
     <EmbeddedResource Include="ServiceWorkers\offline.html" />
     <EmbeddedResource Include="ServiceWorkers\CacheFirstSafe.js" />

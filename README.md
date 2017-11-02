@@ -89,6 +89,9 @@ It will always attempt the network for HTML files (content type `text/html`) and
 
 For the resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
 
+### Minimal
+The minimal strategy does nothing and is good for when you only want a service worker in order for browsers to suggest installing your Progressive Web App. For this to work, you need to add a [web manifest](https://medium.com/dev-channel/how-to-add-a-web-app-manifest-and-mobile-proof-your-site-450e6e485638) file.
+
 ### NetworkFirst
 This strategy will always try the network first for all resources and then fall back to the cache when offline. When the network call succeeds, it will put the response in the cache.
 

@@ -26,7 +26,7 @@ namespace Sample
             services.AddMvc();
             services.AddServiceWorker(new WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerOptions
             {
-                Strategy = WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerStrategy.CacheFirst
+                Strategy = WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerStrategy.Minimal
             });
         }
 

@@ -16,6 +16,12 @@
         CacheFirstSafe,
 
         /// <summary>
+        /// The minimal strategy does nothing and is good for when you only want a service worker in
+        /// order for browsers to suggest installing your PWA.
+        /// </summary>
+        Minimal,
+
+        /// <summary>
         /// Always tries the network first and falls back to cache when offline.
         /// </summary>
         NetworkFirst
