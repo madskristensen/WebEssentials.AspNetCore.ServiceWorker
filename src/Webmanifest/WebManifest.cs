@@ -39,7 +39,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
         /// <summary>If you don't provide a start_url, the current page is used, which is unlikely to be what your users want.</summary>
         [JsonProperty("start_url")]
-        public string Start_Url { get; set; }
+        public string Start_Url { get; set; } = "/";
 
         /// <summary>A list of icons.</summary>
         [JsonProperty("icons")]
@@ -47,15 +47,15 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
         /// <summary>A hex color value.</summary>
         [JsonProperty("background_color")]
-        public string Background_Color { get; set; }
+        public string Background_Color { get; set; } = "#ffffff";
 
         /// <summary>A hex color value.</summary>
         [JsonProperty("theme_color")]
-        public string Theme_Color { get; set; }
+        public string Theme_Color { get; set; } = "#ffffff";
 
         /// <summary>Defines the developer's preferred display mode for the web application.</summary>
         [JsonProperty("display")]
-        public string Display { get; set; }
+        public string Display { get; set; } = "minimal-ui";
 
         /// <summary></summary>
         [JsonProperty("orientation")]

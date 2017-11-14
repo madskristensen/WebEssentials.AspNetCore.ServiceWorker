@@ -14,6 +14,11 @@ namespace WebEssentials.AspNetCore.ServiceWorker
     public class PwaController : Controller
     {
         private PwaOptions _options;
+        private static JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            NullValueHandling = NullValueHandling.Ignore
+        };
 
         /// <summary>
         /// Creates an instance of the controller.
@@ -34,7 +39,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
             string fileName = _options.Strategy + ".js";
             Assembly assembly = typeof(PwaController).Assembly;
             Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.ServiceWorker.ServiceWorker.Files.{fileName}");
-
+            
             using (var reader = new StreamReader(resourceStream))
             {
                 string js = await reader.ReadToEndAsync();
@@ -75,15 +80,9 @@ namespace WebEssentials.AspNetCore.ServiceWorker
                 return NotFound();
             }
 
-            Response.ContentType = "application/manifest+json";
-
-            var settings = new JsonSerializerSettings
-            {
-                Formatting = Formatting.Indented,
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            return Json(wm, settings);
+            Response.ContentType = "application/manifest+json; charset=utf-8";
+            
+            return Json(wm, _jsonSettings);
         }
     }
 }
