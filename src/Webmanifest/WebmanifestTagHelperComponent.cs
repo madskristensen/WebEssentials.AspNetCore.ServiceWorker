@@ -23,7 +23,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// <inheritdoc />
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            if (!_options.RegisterWebmanifest || _serviceProvider.GetService(typeof(IWebManifestService)) == null)
+            if (!_options.RegisterWebmanifest || _serviceProvider.GetService(typeof(WebManifest)) == null)
             {
                 return;
             }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using WebEssentials.AspNetCore.ServiceWorker;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -35,9 +37,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static IServiceCollection AddWebManifest(this IServiceCollection services)
         {
-            services.AddOptions();
             services.AddTransient<ITagHelperComponent, WebmanifestTagHelperComponent>();
-            services.AddTransient<IWebManifestService, WebManifestService>();
+            services.TryAddEnumerable(ServiceDescriptor.Scoped<IConfigureOptions<WebManifest>, WebManifestConfig>());
+            services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<WebManifest>>().Value);
 
             return services;
         }

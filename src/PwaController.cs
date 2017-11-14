@@ -68,11 +68,9 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// Serves the offline.html file
         /// </summary>
         [Route(Constants.WebManifestRoute)]
-        public IActionResult WebManifest([FromServices] IWebManifestService wms)
+        public IActionResult WebManifest([FromServices] WebManifest wm)
         {
-            WebManifest manifest = wms.GetManifest();
-
-            if (manifest == null)
+            if (wm == null)
             {
                 return NotFound();
             }
@@ -85,7 +83,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            return Json(manifest, settings);
+            return Json(wm, settings);
         }
     }
 }
