@@ -11,9 +11,9 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
         private IHostingEnvironment _env;
         private IHttpContextAccessor _accessor;
-        private ServiceWorkerOptions _options;
+        private PwaOptions _options;
 
-        public ServiceWorkerTagHelperComponent(IHostingEnvironment env, IHttpContextAccessor accessor, ServiceWorkerOptions options)
+        public ServiceWorkerTagHelperComponent(IHostingEnvironment env, IHttpContextAccessor accessor, PwaOptions options)
         {
             _env = env;
             _accessor = accessor;

@@ -22,19 +22,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ServiceWorkers\CacheFirst.js" />
-    <None Remove="ServiceWorkers\CacheFirstSafe.js" />
-    <None Remove="ServiceWorkers\Minimal.js" />
-    <None Remove="ServiceWorkers\NetworkFirst.js" />
-    <None Remove="ServiceWorkers\offline.html" />
+    <None Remove="ServiceWorker\Files\CacheFirst.js" />
+    <None Remove="ServiceWorker\Files\CacheFirstSafe.js" />
+    <None Remove="ServiceWorker\Files\Minimal.js" />
+    <None Remove="ServiceWorker\Files\NetworkFirst.js" />
+    <None Remove="ServiceWorker\Files\offline.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ServiceWorkers\CacheFirst.js" />
-    <EmbeddedResource Include="ServiceWorkers\Minimal.js" />
-    <EmbeddedResource Include="ServiceWorkers\NetworkFirst.js" />
-    <EmbeddedResource Include="ServiceWorkers\offline.html" />
-    <EmbeddedResource Include="ServiceWorkers\CacheFirstSafe.js" />
+    <EmbeddedResource Include="ServiceWorker\Files\CacheFirst.js" />
+    <EmbeddedResource Include="ServiceWorker\Files\Minimal.js" />
+    <EmbeddedResource Include="ServiceWorker\Files\NetworkFirst.js" />
+    <EmbeddedResource Include="ServiceWorker\Files\offline.html" />
+    <EmbeddedResource Include="ServiceWorker\Files\CacheFirstSafe.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +43,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions">
+      <Version>2.0.0</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

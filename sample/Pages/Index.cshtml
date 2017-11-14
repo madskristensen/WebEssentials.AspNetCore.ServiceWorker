@@ -1,4 +1,9 @@
 ﻿@page
+@using WebEssentials.AspNetCore.ServiceWorker
+@inject IWebManifestService wms
+@{
+    var manifest = wms.GetManifest();
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +13,14 @@
 </head>
 <body>
     <h1>Sample</h1>
+    <dl>
+        <dt>Name</dt>
+        <dd>@manifest.Name</dd>
+        <dt>Short name</dt>
+        <dd>@manifest.Short_Name</dd>
+    </dl>
+
+
     <script src="~/site.js"></script>
 </body>
 </html>

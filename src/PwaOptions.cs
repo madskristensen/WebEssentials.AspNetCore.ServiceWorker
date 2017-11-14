@@ -6,33 +6,39 @@ namespace WebEssentials.AspNetCore.ServiceWorker
     /// <summary>
     /// Options for the service worker.
     /// </summary>
-    public class ServiceWorkerOptions
+    public class PwaOptions
     {
         /// <summary>
         /// Creates a new default instance of the options.
         /// </summary>
-        public ServiceWorkerOptions()
+        public PwaOptions()
         {
             CacheId = Constants.DefaultCacheId;
             Strategy = ServiceWorkerStrategy.CacheFirstSafe;
             RoutesToPreCache = string.Empty;
             OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
+            RegisterWebmanifest = true;
         }
 
-        internal ServiceWorkerOptions(IConfiguration config)
+        internal PwaOptions(IConfiguration config)
             : this()
         {
-            CacheId = config["serviceworker:version"] ?? CacheId;
+            CacheId = config["serviceworker:cacheId"] ?? CacheId;
             RoutesToPreCache = config["serviceworker:routesToPreCache"] ?? RoutesToPreCache;
-            OfflineRoute= config["serviceworker:offlineRoute"] ?? OfflineRoute;
+            OfflineRoute = config["serviceworker:offlineRoute"] ?? OfflineRoute;
 
             if (bool.TryParse(config["serviceworker:registerServiceWorker"] ?? "true", out bool register))
             {
                 RegisterServiceWorker = register;
             }
 
-            if (Enum.TryParse(config["serviceworker:mode"] ?? "safe", true, out ServiceWorkerStrategy mode))
+            if (bool.TryParse(config["webmanifest:registerWebmanifest"] ?? "true", out bool manifest))
+            {
+                RegisterWebmanifest = manifest;
+            }
+
+            if (Enum.TryParse(config["serviceworker:strategy"] ?? "cacheFirstSafe", true, out ServiceWorkerStrategy mode))
             {
                 Strategy = mode;
             }
@@ -55,7 +61,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         public string RoutesToPreCache { get; set; }
 
         /// <summary>
-        /// The route to the page to show when offline
+        /// The route to the page to show when offline.
         /// </summary>
         public string OfflineRoute { get; set; }
 
@@ -64,5 +70,11 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         /// into the bottom of the HTML page.
         /// </summary>
         public bool RegisterServiceWorker { get; set; }
+
+        /// <summary>
+        /// Determines if a meta tag that points to the web manifest should be inserted
+        /// at the end of the head element.
+        /// </summary>
+        public bool RegisterWebmanifest { get; set; }
     }
 }

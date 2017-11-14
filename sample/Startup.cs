@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebEssentials.AspNetCore.ServiceWorker;
 
 namespace Sample
 {
@@ -24,10 +20,12 @@ namespace Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddServiceWorker(new WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerOptions
+            services.AddServiceWorker(new PwaOptions
             {
-                Strategy = WebEssentials.AspNetCore.ServiceWorker.ServiceWorkerStrategy.NetworkFirst
+                Strategy = ServiceWorkerStrategy.NetworkFirst
             });
+
+            services.AddWebManifest();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
