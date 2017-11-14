@@ -15,7 +15,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         {
             CacheId = Constants.DefaultCacheId;
             Strategy = ServiceWorkerStrategy.CacheFirstSafe;
-            RoutesToPreCache = string.Empty;
+            RoutesToPreCache = "";
             OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
             RegisterWebmanifest = true;

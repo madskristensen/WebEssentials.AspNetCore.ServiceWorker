@@ -20,12 +20,7 @@ namespace Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddServiceWorker(new PwaOptions
-            {
-                Strategy = ServiceWorkerStrategy.NetworkFirst
-            });
-
-            services.AddWebManifest();
+            services.AddProgressiveWebApp(strategy: ServiceWorkerStrategy.NetworkFirst);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

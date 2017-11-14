@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace WebEssentials.AspNetCore.ServiceWorker
 {
     /// <summary>
-    /// A controller for serviceworker.js and offline.html
+    /// A controller for manifest.webmanifest, serviceworker.js and offline.html
     /// </summary>
     public class PwaController : Controller
     {
