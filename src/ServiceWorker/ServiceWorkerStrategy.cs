@@ -1,4 +1,4 @@
-﻿namespace WebEssentials.AspNetCore.ServiceWorker
+﻿namespace WebEssentials.AspNetCore.Pwa
 {
     /// <summary>
     /// The various modes of service workers.

@@ -1,4 +1,4 @@
-﻿namespace WebEssentials.AspNetCore.ServiceWorker
+﻿namespace WebEssentials.AspNetCore.Pwa
 {
     internal class Constants
     {

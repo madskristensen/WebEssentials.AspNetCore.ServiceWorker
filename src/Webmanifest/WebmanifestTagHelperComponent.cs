@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace WebEssentials.AspNetCore.ServiceWorker
+namespace WebEssentials.AspNetCore.Pwa
 {
     internal class WebmanifestTagHelperComponent : TagHelperComponent
     {

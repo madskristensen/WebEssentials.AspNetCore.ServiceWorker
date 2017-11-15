@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
 
-namespace WebEssentials.AspNetCore.ServiceWorker
+namespace WebEssentials.AspNetCore.Pwa
 {
     internal class WebManifestCache
     {

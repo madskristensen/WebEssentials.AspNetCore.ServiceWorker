@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using WebEssentials.AspNetCore.ServiceWorker;
+using WebEssentials.AspNetCore.Pwa;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

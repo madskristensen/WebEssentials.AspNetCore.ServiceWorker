@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace WebEssentials.AspNetCore.ServiceWorker
+namespace WebEssentials.AspNetCore.Pwa
 {
     /// <summary>
     /// The Web App Manifest

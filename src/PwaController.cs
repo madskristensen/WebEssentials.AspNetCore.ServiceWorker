@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 
-namespace WebEssentials.AspNetCore.ServiceWorker
+namespace WebEssentials.AspNetCore.Pwa
 {
     /// <summary>
     /// A controller for manifest.webmanifest, serviceworker.js and offline.html
@@ -34,7 +34,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
             string fileName = _options.Strategy + ".js";
             Assembly assembly = typeof(PwaController).Assembly;
-            Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.ServiceWorker.ServiceWorker.Files.{fileName}");
+            Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.Pwa.ServiceWorker.Files.{fileName}");
 
             using (var reader = new StreamReader(resourceStream))
             {
@@ -57,7 +57,7 @@ namespace WebEssentials.AspNetCore.ServiceWorker
             Response.ContentType = "text/html";
 
             Assembly assembly = typeof(PwaController).Assembly;
-            Stream resourceStream = assembly.GetManifestResourceStream("WebEssentials.AspNetCore.ServiceWorker.ServiceWorker.Files.offline.html");
+            Stream resourceStream = assembly.GetManifestResourceStream("WebEssentials.AspNetCore.Pwa.ServiceWorker.Files.offline.html");
 
             using (var reader = new StreamReader(resourceStream))
             {

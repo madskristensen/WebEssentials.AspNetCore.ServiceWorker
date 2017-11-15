@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\WebEssentials.AspNetCore.ServiceWorker.csproj" />
+    <ProjectReference Include="..\src\WebEssentials.AspNetCore.Pwa.csproj" />
   </ItemGroup>
 
 </Project>

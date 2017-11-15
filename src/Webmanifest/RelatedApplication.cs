@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WebEssentials.AspNetCore.ServiceWorker
+namespace WebEssentials.AspNetCore.Pwa
 {
     /// <summary>
     /// A related native application.
