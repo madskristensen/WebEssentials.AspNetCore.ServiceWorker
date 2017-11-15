@@ -27,8 +27,8 @@ dotnet add package WebEssentials.AspNetCore.PWA
 ## Getting started
 You need to do a few things to turn your website into a PWA:
 
-1. Add two image icons (192x192 and 512x512)
-2. A `manifest.json` file in the root of the `wwwroot` folder
+1. Add two image icons to your project (192x192 and 512x512)
+2. Add a `manifest.json` file in the root of the `wwwroot` folder
 3. Register a service in `Startup.cs`
 4. Make sure it works
 
@@ -84,7 +84,7 @@ If you've followed steps 1-3 then it's time to run your app in the browser and t
 
 **Launch the app** in the Chrome browser.
 
-**View source** and ensure the following elements are present in `<head>`:
+**View source** and ensure the following element is present in `<head>`:
 
 ```html
 <link rel="manifest" href="/manifest.webmanifest" />
@@ -119,8 +119,33 @@ Clicking **Manifest** should show something like this:
 If you see both the service worker and the manifest information then it's all working and you have now successfully converted your site to a PWA!
 
 ## Customize
+You can customize various settings related to both the service worker and the Web App Manifest by passing in a `PwaOptions` object.
 
+```c#
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddProgressiveWebApp(new PwaOptions
+    {
+        RoutesToPreCache = "/, /contact.html, data.json",
+        Strategy = ServiceWorkerStrategy.CacheFirst
+    });
+}
+```
 
+The same options can be set through the ASP.NET Core configuration system in appsettings.json:
+
+```json
+{
+  "pwa": {
+    "registerWebmanifest":  true,
+    "routesToPreCache": "/, /contact.html, data.json",
+    "strategy": "cacheFirst"
+  }
+}
+```
+
+> If you use Visual Studio then you should get full Intellisense inside the `pwa` object in appsettings.json.
 
 ## Customizing the Web App Manifest
 You can use the Web App Manifest alone without the service worker by calling `services.AddWebAppManifest()` instead of `services.AddProgressiveWebApp()`.
