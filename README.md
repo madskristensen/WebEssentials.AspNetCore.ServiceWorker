@@ -57,12 +57,16 @@ Add the file `wwwroot/manifest.json` to your project and fill it in. It could lo
       "sizes": "512x512"
     }
   ],
-  "display": "minimal-ui",
+  "display": "standalone",
   "start_url": "/"
 }
 ```
 
 Read more about the various properties in the [W3C specificiation](http://www.w3.org/TR/appmanifest/).
+
+Now your file structure will look something like this:
+
+![Solution Explorer](art/solution-explorer.png)
 
 ### Step 3 - register the service
 Inside the `ConfigureServices` method in `Startup.cs`, add a call to `services.AddProgressiveWebApp()` like so:
