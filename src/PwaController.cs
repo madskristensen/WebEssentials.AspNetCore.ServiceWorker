@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using Microsoft.Net.Http.Headers;
 
 namespace WebEssentials.AspNetCore.ServiceWorker
 {
@@ -14,11 +14,6 @@ namespace WebEssentials.AspNetCore.ServiceWorker
     public class PwaController : Controller
     {
         private PwaOptions _options;
-        private static JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented,
-            NullValueHandling = NullValueHandling.Ignore
-        };
 
         /// <summary>
         /// Creates an instance of the controller.
@@ -35,11 +30,12 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         public async Task<IActionResult> ServiceWorkerAsync()
         {
             Response.ContentType = "application/javascript; charset=utf-8";
+            Response.Headers[HeaderNames.CacheControl] = "max-age=0";
 
             string fileName = _options.Strategy + ".js";
             Assembly assembly = typeof(PwaController).Assembly;
             Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.ServiceWorker.ServiceWorker.Files.{fileName}");
-            
+
             using (var reader = new StreamReader(resourceStream))
             {
                 string js = await reader.ReadToEndAsync();
@@ -81,8 +77,8 @@ namespace WebEssentials.AspNetCore.ServiceWorker
             }
 
             Response.ContentType = "application/manifest+json; charset=utf-8";
-            
-            return Json(wm, _jsonSettings);
+
+            return Content(wm.RawJson);
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using System;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
 
 namespace WebEssentials.AspNetCore.ServiceWorker
 {
@@ -36,11 +34,11 @@ namespace WebEssentials.AspNetCore.ServiceWorker
 
             if (string.Equals(context.TagName, "head", StringComparison.OrdinalIgnoreCase))
             {
-                if (!string.IsNullOrEmpty(manifest.Theme_Color))
+                if (!string.IsNullOrEmpty(manifest.ThemeColor))
                 {
-                    output.PostContent.AppendHtml(string.Format(_themeFormat, manifest.Theme_Color));
+                    output.PostContent.AppendHtml(string.Format(_themeFormat, manifest.ThemeColor));
                 }
-                
+
                 output.PostContent.AppendHtml(_link);
             }
         }
