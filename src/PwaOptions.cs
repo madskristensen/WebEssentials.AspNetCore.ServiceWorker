@@ -24,21 +24,21 @@ namespace WebEssentials.AspNetCore.ServiceWorker
         internal PwaOptions(IConfiguration config)
             : this()
         {
-            CacheId = config["serviceworker:cacheId"] ?? CacheId;
-            RoutesToPreCache = config["serviceworker:routesToPreCache"] ?? RoutesToPreCache;
-            OfflineRoute = config["serviceworker:offlineRoute"] ?? OfflineRoute;
+            CacheId = config["pwa:cacheId"] ?? CacheId;
+            RoutesToPreCache = config["pwa:routesToPreCache"] ?? RoutesToPreCache;
+            OfflineRoute = config["pwa:offlineRoute"] ?? OfflineRoute;
 
-            if (bool.TryParse(config["serviceworker:registerServiceWorker"] ?? "true", out bool register))
+            if (bool.TryParse(config["pwa:registerServiceWorker"] ?? "true", out bool register))
             {
                 RegisterServiceWorker = register;
             }
 
-            if (bool.TryParse(config["webmanifest:registerWebmanifest"] ?? "true", out bool manifest))
+            if (bool.TryParse(config["pwa:registerWebmanifest"] ?? "true", out bool manifest))
             {
                 RegisterWebmanifest = manifest;
             }
 
-            if (Enum.TryParse(config["serviceworker:strategy"] ?? "cacheFirstSafe", true, out ServiceWorkerStrategy mode))
+            if (Enum.TryParse(config["pwa:strategy"] ?? "cacheFirstSafe", true, out ServiceWorkerStrategy mode))
             {
                 Strategy = mode;
             }
