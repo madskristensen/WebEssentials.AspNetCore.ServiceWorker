@@ -145,6 +145,8 @@ The same options can be set through the ASP.NET Core configuration system in app
 }
 ```
 
+This means you can have settings specific to each of your environments (development, staging, production, etc.) by using various `appsettings.<environment>.json` files or by using environment variables.
+
 > If you use Visual Studio then you should get full Intellisense inside the `pwa` object in appsettings.json.
 
 ## Customizing the Web App Manifest
