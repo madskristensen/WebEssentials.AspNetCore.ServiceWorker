@@ -30,7 +30,7 @@ namespace WebEssentials.AspNetCore.Pwa
         public async Task<IActionResult> ServiceWorkerAsync()
         {
             Response.ContentType = "application/javascript; charset=utf-8";
-            Response.Headers[HeaderNames.CacheControl] = "max-age=0";
+            Response.Headers[HeaderNames.CacheControl] = $"max-age={60 * 60 * 24 * 30}"; // Cache for 30 days
 
             string fileName = _options.Strategy + ".js";
             Assembly assembly = typeof(PwaController).Assembly;
