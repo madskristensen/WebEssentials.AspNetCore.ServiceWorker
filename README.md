@@ -7,7 +7,7 @@ A [Progressive Web App](https://developers.google.com/web/progressive-web-apps/)
 
 1. Any website served over HTTPS
 2. A [Web App Manifest](http://www.w3.org/TR/appmanifest/) (simple JSON file)
-3. A [Service Sorker](https://developers.google.com/web/fundamentals/primers/service-workers/) JavaScript file
+3. A [Service Worker](https://developers.google.com/web/fundamentals/primers/service-workers/) JavaScript file
 
 This components makes Web App Manifest a natural and integrated part of any ASP.NET Core web application and it comes with pre-built service workers so you don't have to write your own.
 
