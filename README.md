@@ -86,6 +86,12 @@ You are now done converting your website into a PWA!
 ### Step 4 - verify it works
 If you've followed steps 1-3 then it's time to run your app in the browser and test that it is in fact a PWA. Here's how to verify it works:
 
+**Turn off JavaScript debugging** in Visual Studio for the service worker to successfully register or follow this [workaround](https://stackoverflow.com/a/46128895).
+
+Turn of JavaScript debugging from **Tools > Options**:
+
+![Debugger options](art/debugger-options.png)
+
 **Launch the app** in the Chrome browser.
 
 **View source** and ensure the following element is present in `<head>`:
