@@ -55,7 +55,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">The service collection.</param>
         /// <param name="manifestFileName">The path to the Web App Manifest file relative to the wwwroot rolder.</param>
-        public static IServiceCollection AddWebManifest(this IServiceCollection services, string manifestFileName = "manifest.json")
+        public static IServiceCollection AddWebManifest(this IServiceCollection services, string manifestFileName = Constants.WebManifestFileName)
         {
             services.AddTransient<ITagHelperComponent, WebmanifestTagHelperComponent>();
 
@@ -75,7 +75,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">The service collection.</param>
         /// <param name="manifestFileName">The path to the Web App Manifest file relative to the wwwroot rolder.</param>
-        public static IServiceCollection AddProgressiveWebApp(this IServiceCollection services, string manifestFileName = "manifest.json")
+        public static IServiceCollection AddProgressiveWebApp(this IServiceCollection services, string manifestFileName = Constants.WebManifestFileName)
         {
             return services.AddWebManifest(manifestFileName)
                            .AddServiceWorker();
@@ -87,7 +87,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The service collection.</param>
         /// <param name="manifestFileName">The path to the Web App Manifest file relative to the wwwroot rolder.</param>
         /// <param name="options">Options for the service worker and Web App Manifest</param>
-        public static IServiceCollection AddProgressiveWebApp(this IServiceCollection services, PwaOptions options, string manifestFileName = "manifest.json")
+        public static IServiceCollection AddProgressiveWebApp(this IServiceCollection services, PwaOptions options, string manifestFileName = Constants.WebManifestFileName)
         {
             return services.AddWebManifest(manifestFileName)
                            .AddServiceWorker(options);
