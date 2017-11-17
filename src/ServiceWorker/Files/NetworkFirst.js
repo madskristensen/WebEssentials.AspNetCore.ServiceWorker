@@ -17,6 +17,9 @@
     }
 
     function addToCache(request, response) {
+        if (!response.ok)
+            return;
+
         var copy = response.clone();
         caches.open(version)
             .then(function (cache) {

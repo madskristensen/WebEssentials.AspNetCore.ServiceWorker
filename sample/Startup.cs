@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using WebEssentials.AspNetCore.Pwa;
 
 namespace Sample
 {
@@ -19,7 +22,7 @@ namespace Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddProgressiveWebApp();
+            services.AddProgressiveWebApp(new PwaOptions { RegisterServiceWorker = true });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,11 +31,11 @@ namespace Sample
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
             }
+                app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebEssentials.AspNetCore.Pwa;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -25,6 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static IServiceCollection AddServiceWorker(this IServiceCollection services, PwaOptions options)
         {
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
             services.AddTransient(factory => options);
 
@@ -36,6 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static IServiceCollection AddServiceWorker(this IServiceCollection services, string offlineRoute = Constants.Offlineroute, ServiceWorkerStrategy strategy = ServiceWorkerStrategy.CacheFirstSafe, bool registerServiceWorker = true, bool registerWebManifest = true, string cacheId = Constants.DefaultCacheId, string routesToPreCache = "")
         {
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
             services.AddTransient(factory => new PwaOptions
             {

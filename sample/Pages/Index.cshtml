@@ -1,6 +1,12 @@
 ﻿@page
 @using WebEssentials.AspNetCore.Pwa
 @inject WebManifest wm
+@{
+    if (!Request.IsHttps && Request.Host.Host != "localhost")
+    {
+        Response.Redirect("https://" + Request.Host);
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +23,18 @@
         <dt>Short name</dt>
         <dd>@wm.ShortName</dd>
     </dl>
+    <img src="~/icon.png?v=hash" />
 
+    <button onclick="showimage()">Show image</button>
+
+    <script>
+        function showimage() {
+            document.body.innerHTML += '<img src="/icon2.png?rnd=' + Math.random() + '" />' +
+                                       '<img src="/icon2.png?v=hash&rnd=' + Math.random() + '" />' +
+                                       '<img src="https://madskristensen.net/img/icon16x16.png" />' +
+                                       '<img src="https://madskristensen.net/img/icon32x32.png?v=hash" />';
+        }
+    </script>
 
     <script src="~/site.js"></script>
 </body>

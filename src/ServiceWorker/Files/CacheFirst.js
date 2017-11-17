@@ -17,6 +17,9 @@
     }
 
     function addToCache(request, response) {
+        if (!response.ok)
+            return;
+
         var copy = response.clone();
         caches.open(version)
             .then(function (cache) {
@@ -49,7 +52,7 @@
         var request = event.request;
 
         // Always fetch non-GET requests from the network
-        if (request.method !== 'GET') {
+        if (request.method !== 'GET' || request.url.match(/\/browserLink/ig)) {
             event.respondWith(
                 fetch(request)
                     .catch(function () {
