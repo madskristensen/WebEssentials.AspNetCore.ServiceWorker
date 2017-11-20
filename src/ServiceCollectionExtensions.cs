@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebEssentials.AspNetCore.Pwa;
 
@@ -17,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddServiceWorker(this IServiceCollection services)
         {
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
-            services.AddTransient<PwaOptions>();
+            services.AddTransient(svc => new PwaOptions(svc.GetRequiredService<IConfiguration>()));
 
             return services;
         }
