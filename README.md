@@ -38,6 +38,7 @@ Get as many icons in various sizes as you want, but you MUST have both a 192x192
 Place the icons somewhere in the `wwwroot` folder. 
 
 > Listing the size in the file names makes them easy to identify. Example: `wwwroot/img/icon192x192.png`
+> [Consider using Real Favicon Generator](https://realfavicongenerator.net/) to generate images for different platforms and sizes.
 
 ### Step 2 - manifest JSON file
 Add the file `wwwroot/manifest.json` to your project and fill it in. It could look like this:
