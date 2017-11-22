@@ -13,7 +13,7 @@ namespace WebEssentials.AspNetCore.Pwa
     /// </summary>
     public class PwaController : Controller
     {
-        private PwaOptions _options;
+        private readonly PwaOptions _options;
 
         /// <summary>
         /// Creates an instance of the controller.
