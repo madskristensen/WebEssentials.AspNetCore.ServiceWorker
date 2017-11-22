@@ -78,6 +78,9 @@ namespace WebEssentials.AspNetCore.Pwa
 
             Response.ContentType = "application/manifest+json; charset=utf-8";
 
+            // Cache for 30 days as prescribed by https://www.w3.org/TR/appmanifest/#obtaining
+            Response.Headers[HeaderNames.CacheControl] = $"max-age={60 * 60 * 24 * 30}";
+
             return Content(wm.RawJson);
         }
     }
