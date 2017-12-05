@@ -11,9 +11,14 @@
         CacheFirst,
 
         /// <summary>
-        /// Caches static resources with ?v=... querystring only. Checks network first for HTML.
+        /// Caches all resources and serves from the cache resources with ?v=... query string. Checks network first for HTML.
         /// </summary>
         CacheFirstSafe,
+
+        /// <summary>
+        /// Caches resources with ?v=... query string only. Unlike <see cref="CacheFirstSafe"/>, this doesn't cache resources without fingerprints.
+        /// </summary>
+        CacheFingerprinted,
 
         /// <summary>
         /// The minimal strategy does nothing and is good for when you only want a service worker in

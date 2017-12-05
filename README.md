@@ -242,11 +242,19 @@ The options are:
 This strategy will add all requested resources to the service worker cache and serve it from the cache every time. If the cache doesn't have the requested resource it will fall back to the network and if that succeeds it will put the response in the cache.
 
 ### CacheFirstSafe (default)
-This strategy adds only HTML files as well as resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds` to the cache.
+This strategy, like CacheFirst, will add all requested resources to the service worker cache. Unlike CacheFirst, it has special handling for HTML files and fingerprinted resources (resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds`).
 
 It will always attempt the network for HTML files (content type `text/html`) and fall back to the cache when the user is offline. That way the user always gets the latest from the live Internet when online.
 
-For the resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
+For fingerprinted resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
+
+### CacheFingerprinted
+
+This strategy only adds fingerprinted resources (resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds) to the cache.
+
+It will always try the cache for fingerprinted resources, then fall back to the network. For all other resources, it will use the network.
+
+This strategy is useful for scenarios in which you don't wish to cache certain resources -- large video or audio files, for example -- but still wish to cache the app core assets (HTML, CSS, JS).
 
 ### Minimal
 The minimal strategy does nothing and is good for when you only want a service worker in order for browsers to suggest installing your Progressive Web App. For this to work, you need to add a [web manifest](https://medium.com/dev-channel/how-to-add-a-web-app-manifest-and-mobile-proof-your-site-450e6e485638) file.
