@@ -249,7 +249,6 @@ It will always attempt the network for HTML files (content type `text/html`) and
 For fingerprinted resources (the ones with a `v` querystring parameter) it will always try the cache first and fall back to the network.
 
 ### CacheFingerprinted
-
 This strategy only adds fingerprinted resources (resources with a `v` querystring parameter such as `site.css?v=8udsfsaufd09sud0809sd_ds) to the cache.
 
 It will always try the cache for fingerprinted resources, then fall back to the network. For all other resources, it will use the network.
