@@ -11,7 +11,7 @@
             .then(function (cache) {
                 return cache.addAll([
                     offlineUrl,
-                    { routes }
+                    {routes}
                 ]);
             });
     }
