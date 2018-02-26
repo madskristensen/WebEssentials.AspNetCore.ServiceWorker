@@ -17,7 +17,7 @@
     }
 
     function addToCache(request, response) {
-        if (!response.ok)
+        if (!response.ok && response.type !== 'opaque')
             return;
 
         var copy = response.clone();
