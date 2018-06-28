@@ -19,6 +19,8 @@ namespace WebEssentials.AspNetCore.Pwa
             OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
             RegisterWebmanifest = true;
+            ServiceWorkerCacheControlMaxAge = 60 * 60 * 24 * 30;    // 30 days
+            WebManifestCacheControlMaxAge = 60 * 60 * 24 * 30;      // 30 days
         }
 
         internal PwaOptions(IConfiguration config)
@@ -41,6 +43,16 @@ namespace WebEssentials.AspNetCore.Pwa
             if (Enum.TryParse(config["pwa:strategy"] ?? "cacheFirstSafe", true, out ServiceWorkerStrategy mode))
             {
                 Strategy = mode;
+            }
+
+            if(int.TryParse(config["pwa:ServiceWorkerCacheControlMaxAge"], out int serviceWorkerCacheControlMaxAge))
+            {
+                ServiceWorkerCacheControlMaxAge = serviceWorkerCacheControlMaxAge;
+            }
+
+            if (int.TryParse(config["pwa:WebManifestCacheControlMaxAge"], out int webManifestCacheControlMaxAge))
+            {
+                WebManifestCacheControlMaxAge = webManifestCacheControlMaxAge;
             }
         }
 
@@ -76,5 +88,12 @@ namespace WebEssentials.AspNetCore.Pwa
         /// at the end of the head element.
         /// </summary>
         public bool RegisterWebmanifest { get; set; }
+
+        /// <summary>
+        /// Determines the value of the ServiceWorker CacheControl header Max-Age (in seconds)
+        /// </summary>
+        public int ServiceWorkerCacheControlMaxAge { get; set; }
+
+        public int WebManifestCacheControlMaxAge { get; set; }
     }
 }
