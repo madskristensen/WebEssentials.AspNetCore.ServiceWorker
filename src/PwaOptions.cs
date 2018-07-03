@@ -19,6 +19,7 @@ namespace WebEssentials.AspNetCore.Pwa
             OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
             RegisterWebmanifest = true;
+            EnableCspNonce = false;
             ServiceWorkerCacheControlMaxAge = 60 * 60 * 24 * 30;    // 30 days
             WebManifestCacheControlMaxAge = 60 * 60 * 24 * 30;      // 30 days
         }
@@ -40,12 +41,17 @@ namespace WebEssentials.AspNetCore.Pwa
                 RegisterWebmanifest = manifest;
             }
 
+            if (bool.TryParse(config["pwa:EnableCspNonce"] ?? "true", out bool enableCspNonce))
+            {
+                EnableCspNonce = enableCspNonce;
+            }
+
             if (Enum.TryParse(config["pwa:strategy"] ?? "cacheFirstSafe", true, out ServiceWorkerStrategy mode))
             {
                 Strategy = mode;
             }
 
-            if(int.TryParse(config["pwa:ServiceWorkerCacheControlMaxAge"], out int serviceWorkerCacheControlMaxAge))
+            if (int.TryParse(config["pwa:ServiceWorkerCacheControlMaxAge"], out int serviceWorkerCacheControlMaxAge))
             {
                 ServiceWorkerCacheControlMaxAge = serviceWorkerCacheControlMaxAge;
             }
@@ -95,5 +101,10 @@ namespace WebEssentials.AspNetCore.Pwa
         public int ServiceWorkerCacheControlMaxAge { get; set; }
 
         public int WebManifestCacheControlMaxAge { get; set; }
+
+        /// <summary>
+        /// Determines whether a CSP nonce will be added via NWebSec
+        /// </summary>
+        public bool EnableCspNonce { get; set; }
     }
 }

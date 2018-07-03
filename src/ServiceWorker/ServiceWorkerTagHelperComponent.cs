@@ -7,7 +7,7 @@ namespace WebEssentials.AspNetCore.Pwa
 {
     internal class ServiceWorkerTagHelperComponent : TagHelperComponent
     {
-        private const string _script = "\r\n\t<script>'serviceWorker'in navigator&&navigator.serviceWorker.register('" + Constants.ServiceworkerRoute + "')</script>";
+        private string _script;
 
         private IHostingEnvironment _env;
         private IHttpContextAccessor _accessor;
@@ -18,6 +18,8 @@ namespace WebEssentials.AspNetCore.Pwa
             _env = env;
             _accessor = accessor;
             _options = options;
+
+            _script = "\r\n\t<script" + (_options.EnableCspNonce ? Constants.CspNonce : string.Empty) + ">'serviceWorker'in navigator&&navigator.serviceWorker.register('" + Constants.ServiceworkerRoute + "')</script>";
         }
 
         /// <inheritdoc />
