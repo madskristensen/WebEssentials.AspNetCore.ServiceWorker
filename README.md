@@ -262,3 +262,6 @@ The minimal strategy does nothing and is good for when you only want a service w
 This strategy will always try the network first for all resources and then fall back to the cache when offline. When the network call succeeds, it will put the response in the cache.
 
 This strategy is completely safe to use and is primarily useful for offline-only scenarios since it isn't giving any performance benefits.
+
+## License
+[Apache 2.0](LICENSE)
