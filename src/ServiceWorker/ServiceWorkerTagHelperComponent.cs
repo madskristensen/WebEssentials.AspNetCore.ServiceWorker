@@ -23,7 +23,7 @@ namespace WebEssentials.AspNetCore.Pwa
         }
 
         /// <inheritdoc />
-        public override int Order => 100;
+        public override int Order => -1;
 
         /// <inheritdoc />
         public override void Process(TagHelperContext context, TagHelperOutput output)
