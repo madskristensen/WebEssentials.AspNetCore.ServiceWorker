@@ -89,7 +89,7 @@ If you've followed steps 1-3 then it's time to run your app in the browser and t
 
 **Turn off JavaScript debugging** in Visual Studio for the service worker to successfully register or follow this [workaround](https://stackoverflow.com/a/46128895).
 
-Turn of JavaScript debugging from **Tools > Options**:
+Turn off JavaScript debugging from **Tools > Options**:
 
 ![Debugger options](art/debugger-options.png)
 
