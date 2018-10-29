@@ -35,7 +35,7 @@ namespace WebEssentials.AspNetCore.Pwa
 
             if (string.Equals(context.TagName, "body", StringComparison.OrdinalIgnoreCase))
             {
-                if (_accessor.HttpContext.Request.IsHttps || _env.IsDevelopment())
+                if ((_options.AllowHttp || _accessor.HttpContext.Request.IsHttps) || _env.IsDevelopment())
                 {
                     output.PostContent.AppendHtml(_script);
                 }

@@ -106,5 +106,10 @@ namespace WebEssentials.AspNetCore.Pwa
         /// Determines whether a CSP nonce will be added via NWebSec
         /// </summary>
         public bool EnableCspNonce { get; set; }
+        
+        /// <summary>
+        /// Generate code even on HTTP connection. Necessary for SSL offloading.
+        /// </summary>
+        public bool AllowHttp { get; set; }
     }
 }
