@@ -17,6 +17,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static IServiceCollection AddServiceWorker(this IServiceCollection services)
         {
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
             services.AddTransient(svc => new PwaOptions(svc.GetRequiredService<IConfiguration>()));
 
