@@ -263,5 +263,63 @@ This strategy will always try the network first for all resources and then fall 
 
 This strategy is completely safe to use and is primarily useful for offline-only scenarios since it isn't giving any performance benefits.
 
+## .Net Core Application hosted as Virtual Directory
+You can now specify a specific BaseURL if you plan to host your application as a Virtual Directory in IIS:
+
+```c#
+private const string _baseURL = "/PWAApp";
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddServiceWorker(new PwaOptions
+    {
+        BaseRoute = _baseURL;
+        Strategy = ServiceWorkerStrategy.CacheFirst
+    });
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    //...
+    app.UsePathBase(_baseURL);
+    //...
+}
+```
+
+...or in `appsettings.json`:
+
+```json
+{
+  "serviceworker": {
+    "baseRoute": "/PWAApp",
+    "strategy": "cacheFirst"
+  }
+}
+```
+
+Make sure to update your `wwwroot/manifest.json` file:
+
+```json
+{
+  "name": "Awesome Application",
+  "short_name": "Awesome",
+  "description": "The most awesome application in the world",
+  "icons": [
+    {
+      "src": "/PWAApp/img/icon192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/PWAApp/img/icon512x512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/PWAApp"
+}
+```
+
+
 ## License
 [Apache 2.0](LICENSE)

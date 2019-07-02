@@ -16,6 +16,7 @@ namespace WebEssentials.AspNetCore.Pwa
             CacheId = Constants.DefaultCacheId;
             Strategy = ServiceWorkerStrategy.CacheFirstSafe;
             RoutesToPreCache = "";
+            BaseRoute = "";
             OfflineRoute = Constants.Offlineroute;
             RegisterServiceWorker = true;
             RegisterWebmanifest = true;
@@ -29,6 +30,7 @@ namespace WebEssentials.AspNetCore.Pwa
         {
             CacheId = config["pwa:cacheId"] ?? CacheId;
             RoutesToPreCache = config["pwa:routesToPreCache"] ?? RoutesToPreCache;
+            BaseRoute = config["pwa:baseRoute"] ?? BaseRoute;
             OfflineRoute = config["pwa:offlineRoute"] ?? OfflineRoute;
 
             if (bool.TryParse(config["pwa:registerServiceWorker"] ?? "true", out bool register))
@@ -77,6 +79,11 @@ namespace WebEssentials.AspNetCore.Pwa
         /// A comma separated list of routes to pre-cache when service worker installs in the browser.
         /// </summary>
         public string RoutesToPreCache { get; set; }
+
+        /// <summary>
+        /// The base route to the application.
+        /// </summary>
+        public string BaseRoute { get; set; }
 
         /// <summary>
         /// The route to the page to show when offline.
