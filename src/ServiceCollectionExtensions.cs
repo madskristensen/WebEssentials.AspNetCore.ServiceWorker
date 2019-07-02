@@ -17,7 +17,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static IServiceCollection AddServiceWorker(this IServiceCollection services)
         {
-
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
             services.AddTransient(svc => new PwaOptions(svc.GetRequiredService<IConfiguration>()));
@@ -40,12 +39,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds ServiceWorker services to the specified <see cref="IServiceCollection"/>.
         /// </summary>
-        public static IServiceCollection AddServiceWorker(this IServiceCollection services, string offlineRoute = Constants.Offlineroute, ServiceWorkerStrategy strategy = ServiceWorkerStrategy.CacheFirstSafe, bool registerServiceWorker = true, bool registerWebManifest = true, string cacheId = Constants.DefaultCacheId, string routesToPreCache = "")
+        public static IServiceCollection AddServiceWorker(this IServiceCollection services, string baseRoute = "", string offlineRoute = Constants.Offlineroute, ServiceWorkerStrategy strategy = ServiceWorkerStrategy.CacheFirstSafe, bool registerServiceWorker = true, bool registerWebManifest = true, string cacheId = Constants.DefaultCacheId, string routesToPreCache = "")
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ITagHelperComponent, ServiceWorkerTagHelperComponent>();
             services.AddTransient(factory => new PwaOptions
             {
+                BaseRoute = baseRoute,
                 OfflineRoute = offlineRoute,
                 Strategy = strategy,
                 RegisterServiceWorker = registerServiceWorker,
