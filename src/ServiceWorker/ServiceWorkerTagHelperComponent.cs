@@ -19,7 +19,7 @@ namespace WebEssentials.AspNetCore.Pwa
             _accessor = accessor;
             _options = options;
 
-            _script = "\r\n\t<script" + (_options.EnableCspNonce ? Constants.CspNonce : string.Empty) + ">'serviceWorker'in navigator&&navigator.serviceWorker.register('" + options.BaseRoute + Constants.ServiceworkerRoute + "')</script>";
+            _script = "\r\n\t<script" + (_options.EnableCspNonce ? Constants.CspNonce : string.Empty) + ">'serviceWorker'in navigator&&navigator.serviceWorker.register('" + options.BaseRoute + Constants.ServiceworkerRoute + "', { scope: '" + options.BaseRoute + "/' })</script>";
         }
 
         /// <inheritdoc />

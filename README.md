@@ -316,7 +316,7 @@ Make sure to update your `wwwroot/manifest.json` file:
     }
   ],
   "display": "standalone",
-  "start_url": "/PWAApp"
+  "start_url": "/PWAApp/"
 }
 ```
 
