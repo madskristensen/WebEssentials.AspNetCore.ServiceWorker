@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace WebEssentials.AspNetCore.Pwa
 {
@@ -113,7 +113,7 @@ namespace WebEssentials.AspNetCore.Pwa
         /// Determines whether a CSP nonce will be added via NWebSec
         /// </summary>
         public bool EnableCspNonce { get; set; }
-        
+
         /// <summary>
         /// Generate code even on HTTP connection. Necessary for SSL offloading.
         /// </summary>
