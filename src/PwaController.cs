@@ -27,6 +27,7 @@ namespace WebEssentials.AspNetCore.Pwa
         /// Serves a service worker based on the provided settings.
         /// </summary>
         [Route(Constants.ServiceworkerRoute)]
+        [HttpGet]
         public async Task<IActionResult> ServiceWorkerAsync()
         {
             Response.ContentType = "application/javascript; charset=utf-8";
@@ -52,6 +53,7 @@ namespace WebEssentials.AspNetCore.Pwa
         /// Serves the offline.html file
         /// </summary>
         [Route(Constants.Offlineroute)]
+        [HttpGet]
         public async Task<IActionResult> OfflineAsync()
         {
             Response.ContentType = "text/html";
@@ -66,9 +68,10 @@ namespace WebEssentials.AspNetCore.Pwa
         }
 
         /// <summary>
-        /// Serves the offline.html file
+        /// Serves the manifest.json file
         /// </summary>
         [Route(Constants.WebManifestRoute)]
+        [HttpGet]
         public IActionResult WebManifest([FromServices] WebManifest wm)
         {
             if (wm == null)
