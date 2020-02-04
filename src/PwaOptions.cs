@@ -23,6 +23,8 @@ namespace WebEssentials.AspNetCore.Pwa
             EnableCspNonce = false;
             ServiceWorkerCacheControlMaxAge = 60 * 60 * 24 * 30;    // 30 days
             WebManifestCacheControlMaxAge = 60 * 60 * 24 * 30;      // 30 days
+            CustomServiceWorkerStrategyFileName = Constants.CustomServiceworkerFileName;
+            RoutesToIgnore = "";
         }
 
         internal PwaOptions(IConfiguration config)
@@ -32,6 +34,9 @@ namespace WebEssentials.AspNetCore.Pwa
             RoutesToPreCache = config["pwa:routesToPreCache"] ?? RoutesToPreCache;
             BaseRoute = config["pwa:baseRoute"] ?? BaseRoute;
             OfflineRoute = config["pwa:offlineRoute"] ?? OfflineRoute;
+            RoutesToIgnore = config["pwa:routesToIgnore"] ?? RoutesToIgnore;
+            CustomServiceWorkerStrategyFileName =
+                config["pwa:customServiceWorkerFileName"] ?? CustomServiceWorkerStrategyFileName;
 
             if (bool.TryParse(config["pwa:registerServiceWorker"] ?? "true", out bool register))
             {
@@ -118,5 +123,15 @@ namespace WebEssentials.AspNetCore.Pwa
         /// Generate code even on HTTP connection. Necessary for SSL offloading.
         /// </summary>
         public bool AllowHttp { get; set; }
+
+        /// <summary>
+        /// The file name of the Custom ServiceWorker Strategy
+        /// </summary>
+        public string CustomServiceWorkerStrategyFileName { get; set; }
+
+        /// <summary>
+        /// A comma separated list of routes to ignore when implementing a CustomServiceworker.  
+        /// </summary>
+        public string RoutesToIgnore { get; set; }
     }
 }

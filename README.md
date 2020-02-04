@@ -263,6 +263,32 @@ This strategy will always try the network first for all resources and then fall 
 
 This strategy is completely safe to use and is primarily useful for offline-only scenarios since it isn't giving any performance benefits.
 
+### CustomStrategy
+This strategy will allow the user to specify their own implementation as a Javascript(.js) file.  By default the app will search for a file named `customserviceworker.js` in the wwwroot folder.   
+A filename may be explicitly set by providing it as an option when registering the service in the `Startup.cs` or `appsettings.json` file.
+
+```C#
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+            services.AddProgressiveWebApp(new PwaOptions { RegisterServiceWorker = true, Strategy = ServiceWorkerStrategy.CustomStrategy, CustomServiceWorkerStrategyFileName = "myCustomServiceworkerStrategy.js"});
+        }
+```
+
+When creating the `customserviceworker.js` by providing {version}, {routes}, {ignoreRoutes} and {offlineRoute} values within the javascript file string, interpolation will be used to replace these values with option values as set in the `Startup.cs` or `appsettings.json` file.
+
+```javascript
+(function () {
+    //Insert Your Service Worker In place of this one!
+
+    // Update 'version' if you need to refresh the cache
+    var version = '{version}';
+    var offlineUrl = "{offlineRoute}";
+    var routes = "{routes}";
+    var routesToIgnore = "{ignoreRoutes}";
+});
+```
+
 ## .Net Core Application hosted as Virtual Directory
 You can now specify a specific BaseURL if you plan to host your application as a Virtual Directory in IIS:
 

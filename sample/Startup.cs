@@ -30,7 +30,8 @@ namespace Sample
             {
                 app.UseBrowserLink();
             }
-                app.UseDeveloperExceptionPage();
+
+            app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
