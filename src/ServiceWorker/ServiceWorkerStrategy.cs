@@ -29,6 +29,11 @@
         /// <summary>
         /// Always tries the network first and falls back to cache when offline.
         /// </summary>
-        NetworkFirst
+        NetworkFirst,
+
+        /// <summary>
+        /// Allows a user defined custom strategy to be provided.
+        /// </summary>
+        CustomStrategy
     }
 }

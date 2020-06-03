@@ -2,8 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Semantics;
 using Microsoft.Net.Http.Headers;
 
 namespace WebEssentials.AspNetCore.Pwa
@@ -14,13 +16,15 @@ namespace WebEssentials.AspNetCore.Pwa
     public class PwaController : Controller
     {
         private readonly PwaOptions _options;
+        private readonly RetrieveCustomServiceworker _customServiceworker;
 
         /// <summary>
         /// Creates an instance of the controller.
         /// </summary>
-        public PwaController(PwaOptions options)
+        public PwaController(PwaOptions options, RetrieveCustomServiceworker customServiceworker)
         {
             _options = options;
+            _customServiceworker = customServiceworker;
         }
 
         /// <summary>
@@ -33,20 +37,33 @@ namespace WebEssentials.AspNetCore.Pwa
             Response.ContentType = "application/javascript; charset=utf-8";
             Response.Headers[HeaderNames.CacheControl] = $"max-age={_options.ServiceWorkerCacheControlMaxAge}";
 
-            string fileName = _options.Strategy + ".js";
-            Assembly assembly = typeof(PwaController).Assembly;
-            Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.Pwa.ServiceWorker.Files.{fileName}");
-
-            using (var reader = new StreamReader(resourceStream))
+            if (_options.Strategy == ServiceWorkerStrategy.CustomStrategy)
             {
-                string js = await reader.ReadToEndAsync();
-                string modified = js
-                    .Replace("{version}", _options.CacheId + "::" + _options.Strategy)
-                    .Replace("{routes}", string.Join(",", _options.RoutesToPreCache.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'")))
-                    .Replace("{offlineRoute}", _options.BaseRoute + _options.OfflineRoute);
-
-                return Content(modified);
+                string js = _customServiceworker.GetCustomServiceworker(_options.CustomServiceWorkerStrategyFileName);
+                return Content(InsertStrategyOptions(js)); 
             }
+
+            else
+            {
+                string fileName = _options.Strategy + ".js";
+                Assembly assembly = typeof(PwaController).Assembly;
+                Stream resourceStream = assembly.GetManifestResourceStream($"WebEssentials.AspNetCore.Pwa.ServiceWorker.Files.{fileName}");
+
+                using (var reader = new StreamReader(resourceStream))
+                {
+                    string js = await reader.ReadToEndAsync();
+                    return Content(InsertStrategyOptions(js));
+                }
+            }
+        }
+
+        private string InsertStrategyOptions(string javascriptString)
+        {
+            return javascriptString
+                .Replace("{version}", _options.CacheId + "::" + _options.Strategy)
+                .Replace("{routes}", string.Join(",", _options.RoutesToPreCache.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'")))
+                .Replace("{offlineRoute}", _options.BaseRoute + _options.OfflineRoute)
+                .Replace("{ignoreRoutes}", string.Join(",", _options.RoutesToIgnore.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'")));
         }
 
         /// <summary>
