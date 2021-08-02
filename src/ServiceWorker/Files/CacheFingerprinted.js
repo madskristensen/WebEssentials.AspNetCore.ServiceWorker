@@ -21,10 +21,13 @@
             return;
 
         var copy = response.clone();
-        caches.open(version)
-            .then(function (cache) {
-                cache.put(request, copy);
-            });
+        caches.open(version).then(function (cache) {
+          if (request.url.match("^(http|https)://")) {
+            cache.put(request, copy);
+          } else {
+            return;
+          }
+        });
     }
 
     function serveOfflineImage(request) {
