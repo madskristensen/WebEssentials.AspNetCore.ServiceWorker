@@ -13,7 +13,7 @@
     <Product>WebEssentials.AspNetCore.PWA</Product>
     <PackageIconUrl>https://raw.githubusercontent.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker/master/art/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression >
     <RepositoryUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</RepositoryUrl>
   </PropertyGroup>
 
