@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Semantics;
 using Microsoft.Net.Http.Headers;
 
 namespace WebEssentials.AspNetCore.Pwa
@@ -40,7 +39,7 @@ namespace WebEssentials.AspNetCore.Pwa
             if (_options.Strategy == ServiceWorkerStrategy.CustomStrategy)
             {
                 string js = _customServiceworker.GetCustomServiceworker(_options.CustomServiceWorkerStrategyFileName);
-                return Content(InsertStrategyOptions(js)); 
+                return Content(InsertStrategyOptions(js));
             }
 
             else
