@@ -1,9 +1,9 @@
 ﻿using System.IO;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.FileProviders;
-using Newtonsoft.Json;
 
 namespace WebEssentials.AspNetCore.Pwa
 {
@@ -29,7 +29,7 @@ namespace WebEssentials.AspNetCore.Pwa
 
                 string json = File.ReadAllText(file.PhysicalPath);
 
-                WebManifest manifest = JsonConvert.DeserializeObject<WebManifest>(json);
+                WebManifest manifest = JsonSerializer.Deserialize<WebManifest>(json);
                 manifest.FileName = _fileName;
                 manifest.RawJson = Regex.Replace(json, "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1");
 

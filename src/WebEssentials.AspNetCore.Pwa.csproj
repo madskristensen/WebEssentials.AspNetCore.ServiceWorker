@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebEssentials.AspNetCore.Pwa.xml</DocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>asp.net, performance, speed, cache, caching</PackageTags>
@@ -13,7 +13,7 @@
     <Product>WebEssentials.AspNetCore.PWA</Product>
     <PackageIconUrl>https://raw.githubusercontent.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker/master/art/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</PackageProjectUrl>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression >
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker</RepositoryUrl>
   </PropertyGroup>
 
@@ -35,16 +35,13 @@
     <EmbeddedResource Include="ServiceWorker\Files\CacheFirstSafe.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc" version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.0.3" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
