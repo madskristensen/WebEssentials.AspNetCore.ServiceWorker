@@ -8,7 +8,7 @@
   // Store core files in a cache (including a page to display when offline)
   function updateStaticCache() {
     return caches.open(version).then(function (cache) {
-      return cache.addAll([offlineUrl, { routes }]);
+      return cache.addAll([offlineUrl, {routes}]);
     });
   }
 
